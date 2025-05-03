@@ -20,11 +20,13 @@ function verificarChute() {
     let chute = document.querySelector('input').value;
 
     if (chute == numeroSecreto) {
-        exibirTextoNaTela('h1', `O número secreto é ${numeroSecreto}`);
+        exibirTextoNaTela('h1', `O número secreto é ${numeroSecreto}!`);
         let palavraTentativa = numeroTentativas > 1 ? 'tentativas':'tentativa';
         let mensagemTentativas = `Você acertou com ${numeroTentativas} ${palavraTentativa}.`;
         exibirTextoNaTela('p', mensagemTentativas);
         document.getElementById('reiniciar').removeAttribute('disabled');
+        deixarMonstrinhoFeliz();
+
     } else if (chute > numeroMaximo || chute < 1) {
         exibirTextoNaTela('h1', `Número inválido!`);
         exibirTextoNaTela('p', `Somente números entre 1 e ${numeroMaximo}.`);
@@ -68,4 +70,15 @@ function reiniciarJogo() {
     numeroTentativas = 1;
     numeroSecreto = gerarNumeroAleatorio();
     document.getElementById('reiniciar').setAttribute('disabled', true);
+    deixarMonstrinhoTriste()
+}
+
+function deixarMonstrinhoFeliz() {
+    let image = document.getElementById('imagem');
+    image.src = "./img/monstrinho-feliz.png";
+}
+
+function deixarMonstrinhoTriste() {
+    let image = document.getElementById('imagem');
+    image.src = "./img/monstrinho.png";
 }
